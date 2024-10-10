@@ -1,0 +1,4 @@
+podman kube play --replace --network dev wolfi.yml
+
+podman attach wolfi-pod-wolfi1
+psql postgres://myuser:password@wolfi-pod-postgres:5432/mydatabase

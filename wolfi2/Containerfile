@@ -1,0 +1,8 @@
+FROM cgr.dev/chainguard/wolfi-base
+
+WORKDIR /home/nonroot
+
+RUN apk add \
+  bash
+
+ENTRYPOINT [ "bash" ]

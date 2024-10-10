@@ -1,0 +1,26 @@
+FROM cgr.dev/chainguard/wolfi-base
+
+WORKDIR /home/nonroot
+
+RUN apk add \
+  shadow \
+  libpq-17 postgresql-17 postgresql-17-client \
+  bash
+
+RUN useradd postgres && \
+  mkdir /home/postgres && \
+  chown postgres:postgres /home/postgres
+
+USER postgres
+WORKDIR /home/postgres
+
+RUN initdb -D /home/postgres/data && \
+  pg_ctl -D /home/postgres/data -l logfile start && \
+  psql -c "create role myuser login password 'password';" && \
+  psql -c "create database mydatabase with owner = myuser;" && \
+  pg_ctl -D /home/postgres/data stop
+
+RUN echo "local all all trust" > /home/postgres/data/pg_hba.conf
+RUN echo "host mydatabase myuser 127.0.0.1/1 password" >> /home/postgres/data/pg_hba.conf
+
+ENTRYPOINT pg_ctl -D /home/postgres/data -l logfile start && tail -f /home/postgres/logfile

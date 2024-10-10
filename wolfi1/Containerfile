@@ -1,0 +1,11 @@
+FROM cgr.dev/chainguard/wolfi-base
+
+WORKDIR /home/nonroot
+
+RUN apk add \
+  iputils curl postgresql-14-client \
+  bash neovim git\
+  nodejs npm \
+  python-3.13 py3.13-pip
+
+ENTRYPOINT [ "bash" ]

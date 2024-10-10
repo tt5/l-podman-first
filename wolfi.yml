@@ -1,0 +1,44 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    io.kubernetes.cri-o.TTY/wolfi: "true"
+    io.podman.annotations.autoremove/wolfi: "FALSE"
+    io.podman.annotations.init/wolfi: "FALSE"
+    io.podman.annotations.privileged/wolfi: "FALSE"
+    io.podman.annotations.publish-all/wolfi: "FALSE"
+  labels:
+    app: wolfi-pod
+  name: wolfi-pod
+spec:
+  automountServiceAccountToken: false
+  containers:
+  - image: localhost/wolfi1
+    name: wolfi1
+    tty: true
+    volumeMounts:
+    - mountPath: /home/nonroot
+      name: wolfi1
+  - image: localhost/wolfi1
+    name: wolfi2
+    tty: true
+    volumeMounts:
+    - mountPath: /home/nonroot
+      name: wolfi2
+  - image: localhost/postgres
+    name: postgres
+    tty: true
+    ports:
+    - containerPort: 5432
+      hostPort: 5432
+  enableServiceLinks: false
+  volumes:
+  - hostPath:
+      path: /home/n/data/l/podman/first/wolfi1/storage
+      type: Directory
+    name: wolfi1
+  - hostPath:
+      path: /home/n/data/l/podman/first/wolfi2/storage
+      type: Directory
+    name: wolfi2
+
