@@ -1,0 +1,16 @@
+{
+  "name": "mongoz",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "bun-types": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@prisma/client": "5.3.1",
+    "mongoose": "^8.3.4",
+    "prisma": "^5.3.1"
+  }
+}

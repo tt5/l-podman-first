@@ -1,0 +1,2 @@
+npx tsc schema.ts
+node --import=tsx --experimental-detect-module index.js

@@ -1,0 +1,9 @@
+7.0.16
+
+https://mehmetozanguven.com/run-mongodb-with-podman/
+
+podman exec -it mongo bash
+> mongosh
+podman stop -l
+podman rm -l
+podman run -dt --name mongo1 -p 27017:27017 -v $(pwd)/data:/data/db:Z docker.io/mongo:7.0.16 --auth

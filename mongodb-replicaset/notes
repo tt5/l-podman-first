@@ -1,0 +1,8 @@
+podman build . -t mongo
+podman run -p 27018:27018 --name mongo mongo
+
+
+docker push localhost:32000/mongo:registry
+podman tag e0d6e94777dc localhost:32000/mongo:registry
+
+prisma needs mongodb with a replica set, because it uses transactions which work only with replicasets.
