@@ -1,0 +1,32 @@
+python3
+nodejs, npm
+neovim
+rustup
+
+bin:
+julia
+
+pip:
+cmake
+
+?:
+caddy
+cloudflared
+curl
+ffmpeg
+flux
+bat
+btop
+armadillo
+atuin
+fzf
+gawk
+gh
+git
+yq jq
+kubectl
+lua, lua-lpeg
+m4
+tmux
+vault
+zeromq

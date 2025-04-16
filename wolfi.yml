@@ -19,6 +19,11 @@ spec:
     volumeMounts:
     - mountPath: /home/nonroot
       name: wolfi1
+    ports:
+    - containerPort: 1887
+      hostPort: 1887
+    - containerPort: 4222
+      hostPort: 4222
   - image: localhost/wolfi1
     name: wolfi2
     tty: true
